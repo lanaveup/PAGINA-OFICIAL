@@ -15,7 +15,7 @@ html {
 body {
   margin: 0;
   background: #260333;
-  color: #fff;
+  color: #ffffff;
   font-family: Arial, sans-serif;
 }
 
@@ -44,16 +44,18 @@ main {
 /* MENÚ */
 
 nav {
+  position: relative;
+  z-index: 10;
   height: 90px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #ffffff28;
-  position: relative;
-  z-index: 3;
 }
 
 .brand {
+  display: flex;
+  align-items: center;
   font-size: 20px;
   font-weight: 800;
 }
@@ -108,50 +110,50 @@ nav {
 /* PORTADA */
 
 .hero {
+  position: relative;
+  z-index: 2;
   min-height: 690px;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
-  position: relative;
-  z-index: 2;
 }
 
 .eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
+  color: #ffb3df;
   font-size: 11px;
   font-weight: 800;
-  color: #ffb3df;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .hero h1 {
+  margin: 30px 0;
   font-size: clamp(64px, 7.5vw, 112px);
   line-height: 0.82;
   letter-spacing: -0.075em;
-  margin: 30px 0;
 }
 
 .hero h1 em {
-  font-family: Georgia, serif;
   color: var(--pink);
+  font-family: Georgia, serif;
   font-weight: 400;
 }
 
 .lead {
-  font-size: 19px;
-  line-height: 1.6;
-  color: #eadced;
   max-width: 590px;
   margin-bottom: 35px;
+  color: #eadced;
+  font-size: 19px;
+  line-height: 1.6;
 }
 
 /* LOGO CENTRAL */
 
 .visual {
+  position: relative;
   height: 540px;
   display: grid;
   place-items: center;
-  position: relative;
 }
 
 .orbits {
@@ -160,11 +162,19 @@ nav {
   height: 460px;
   border: 1px solid #ffffff35;
   border-radius: 50%;
-  transform: skewX(10deg);
-  animation: orbitMove 10s linear infinite;
+  animation: orbitLine 14s linear infinite;
 }
 
-@keyframes orbitMove {
+.orbits::after {
+  content: "";
+  position: absolute;
+  inset: 42px -25px;
+  border: 1px solid #ffffff1f;
+  border-radius: 50%;
+  transform: rotate(55deg);
+}
+
+@keyframes orbitLine {
   from {
     transform: rotate(0deg) skewX(10deg);
   }
@@ -174,7 +184,11 @@ nav {
   }
 }
 
+/* LOGO ROSADO */
+
 .mark {
+  position: relative;
+  z-index: 3;
   display: flex;
   gap: 22px;
   align-items: center;
@@ -197,6 +211,7 @@ nav {
   width: 38px;
   height: 210px;
   background: var(--pink);
+  box-shadow: 0 0 70px #f64ab480;
   clip-path: polygon(
     50% 0,
     100% 16%,
@@ -206,7 +221,6 @@ nav {
     35% 84%,
     35% 16%
   );
-  box-shadow: 0 0 70px #f64ab480;
 }
 
 .mark b:nth-child(2) {
@@ -217,48 +231,133 @@ nav {
   transform: scaleX(-1);
 }
 
-.visual span {
+/* PALABRAS GIRANDO ALREDEDOR DEL LOGO */
+
+.visual > span {
   position: absolute;
-  border: 1px solid #ffffff28;
-  background: #31083fa8;
-  padding: 9px 12px;
+  z-index: 6;
+  left: 50%;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+
+  padding: 9px 13px;
+  border: 1px solid #ffffff35;
+  background: #31083fe6;
+  color: #ffffff;
+
   font-size: 9px;
+  font-weight: 800;
   letter-spacing: 0.15em;
+  white-space: nowrap;
+
+  box-shadow: 0 8px 24px #1200184d;
 }
 
-.visual span:nth-of-type(1) {
-  right: 4%;
-  top: 25%;
+/* STARTUPS */
+
+.visual > span:nth-of-type(1) {
+  animation: circleStartups 12s linear infinite;
 }
 
-.visual span:nth-of-type(2) {
-  left: 8%;
-  bottom: 22%;
+/* TALENTO */
+
+.visual > span:nth-of-type(2) {
+  animation: circleTalento 12s linear infinite;
 }
 
-.visual span:nth-of-type(3) {
-  right: 18%;
-  bottom: 10%;
+/* CAPITAL */
+
+.visual > span:nth-of-type(3) {
+  animation: circleCapital 12s linear infinite;
 }
 
-/* CINTA EN MOVIMIENTO */
+@keyframes circleStartups {
+  from {
+    transform:
+      rotate(0deg)
+      translateX(230px)
+      rotate(0deg)
+      translate(-50%, -50%);
+  }
+
+  to {
+    transform:
+      rotate(360deg)
+      translateX(230px)
+      rotate(-360deg)
+      translate(-50%, -50%);
+  }
+}
+
+@keyframes circleTalento {
+  from {
+    transform:
+      rotate(120deg)
+      translateX(230px)
+      rotate(-120deg)
+      translate(-50%, -50%);
+  }
+
+  to {
+    transform:
+      rotate(480deg)
+      translateX(230px)
+      rotate(-480deg)
+      translate(-50%, -50%);
+  }
+}
+
+@keyframes circleCapital {
+  from {
+    transform:
+      rotate(240deg)
+      translateX(230px)
+      rotate(-240deg)
+      translate(-50%, -50%);
+  }
+
+  to {
+    transform:
+      rotate(600deg)
+      translateX(230px)
+      rotate(-600deg)
+      translate(-50%, -50%);
+  }
+}
+
+/* CINTA INFERIOR */
 
 .ticker {
   position: relative;
-  z-index: 2;
+  z-index: 5;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
   background: #140018;
-  padding: 18px 0;
-  white-space: nowrap;
-  width: max-content;
-  min-width: 220%;
-  word-spacing: 28px;
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  font-weight: 800;
-  animation: tickerMove 14s linear infinite;
 }
 
-@keyframes tickerMove {
+.ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  padding: 18px 0;
+  animation: tickerContinuous 16s linear infinite;
+}
+
+.ticker-track span {
+  display: block;
+  flex-shrink: 0;
+  padding-right: 60px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  word-spacing: 24px;
+  white-space: nowrap;
+}
+
+@keyframes tickerContinuous {
   from {
     transform: translateX(0);
   }
@@ -268,24 +367,24 @@ nav {
   }
 }
 
-.ticker:hover {
+.ticker:hover .ticker-track {
   animation-play-state: paused;
 }
 
 /* SECCIONES */
 
 .section {
-  padding-top: 110px;
-  padding-bottom: 110px;
   position: relative;
   z-index: 2;
+  padding-top: 110px;
+  padding-bottom: 110px;
 }
 
 .section h2 {
+  margin: 20px 0;
   font-size: clamp(42px, 5vw, 70px);
   line-height: 1.02;
   letter-spacing: -0.05em;
-  margin: 20px 0;
 }
 
 .split {
@@ -295,10 +394,10 @@ nav {
 }
 
 .split > div:last-child {
+  padding-top: 42px;
+  color: #eadced;
   font-size: 17px;
   line-height: 1.75;
-  color: #eadced;
-  padding-top: 42px;
 }
 
 .dark {
@@ -312,9 +411,9 @@ nav {
 }
 
 .cards article {
-  border: 1px solid #ffffff29;
-  padding: 35px;
   min-height: 280px;
+  padding: 35px;
+  border: 1px solid #ffffff29;
   transition:
     transform 0.3s ease,
     background 0.3s ease;
@@ -330,8 +429,8 @@ nav {
 }
 
 .cards h3 {
-  font-size: 28px;
   margin-top: 80px;
+  font-size: 28px;
 }
 
 .cards p {
@@ -354,14 +453,14 @@ nav {
 .contact > div > a {
   display: inline-block;
   margin-top: 25px;
-  border-bottom: 1px solid var(--pink);
   padding-bottom: 8px;
+  border-bottom: 1px solid var(--pink);
 }
 
 form {
-  background: #fff;
-  color: var(--ink);
   padding: 40px;
+  background: #ffffff;
+  color: var(--ink);
 }
 
 .row {
@@ -374,18 +473,20 @@ label {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 11px;
-  text-transform: uppercase;
-  font-weight: 800;
   margin-bottom: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 input,
 select,
 textarea {
+  padding: 12px 2px;
   border: 0;
   border-bottom: 1px solid #cbbdca;
-  padding: 12px 2px;
+  background: #ffffff;
+  color: var(--ink);
   font: inherit;
   outline: none;
 }
@@ -396,14 +497,21 @@ textarea:focus {
   border-color: var(--pink);
 }
 
+textarea {
+  resize: vertical;
+}
+
 .consent {
   flex-direction: row;
-  text-transform: none;
+  align-items: flex-start;
   font-weight: 400;
+  line-height: 1.4;
+  text-transform: none;
 }
 
 .consent input {
   width: auto;
+  margin-top: 2px;
 }
 
 .submit {
@@ -435,12 +543,13 @@ footer span {
   color: #d7c5dc;
 }
 
-/* BOLAS MORADAS EN MOVIMIENTO */
+/* BOLAS MORADAS DEL FONDO */
 
 .ambient {
   position: absolute;
-  inset: 0;
   z-index: 0;
+  inset: 0;
+  overflow: hidden;
   pointer-events: none;
 }
 
@@ -448,6 +557,7 @@ footer span {
   position: absolute;
   border-radius: 50%;
   opacity: 0.55;
+
   background: radial-gradient(
     circle at 30% 25%,
     #ffffff,
@@ -455,8 +565,9 @@ footer span {
     #721b9b2e 62%,
     transparent 72%
   );
+
   box-shadow: 0 0 90px #f64ab452;
-  animation: float 6s ease-in-out infinite alternate;
+  animation: floatBall 6s ease-in-out infinite alternate;
 }
 
 .ambient i:nth-child(1) {
@@ -503,7 +614,7 @@ footer span {
   animation-delay: -5s;
 }
 
-@keyframes float {
+@keyframes floatBall {
   0% {
     transform: translate(0, 0) scale(1);
   }
@@ -539,7 +650,7 @@ footer span {
   }
 
   .visual {
-    height: 400px;
+    height: 440px;
   }
 
   .contact {
@@ -550,8 +661,8 @@ footer span {
     flex-wrap: wrap;
   }
 
-  .ticker {
-    animation-duration: 10s;
+  .ticker-track {
+    animation-duration: 12s;
   }
 }
 
@@ -562,8 +673,20 @@ footer span {
     width: calc(100% - 28px);
   }
 
+  nav {
+    height: 75px;
+  }
+
+  .small {
+    padding: 11px;
+  }
+
   .hero h1 {
     font-size: 58px;
+  }
+
+  .lead {
+    font-size: 16px;
   }
 
   .row {
@@ -571,7 +694,13 @@ footer span {
   }
 
   .visual {
-    transform: scale(0.8);
+    height: 380px;
+    transform: scale(0.82);
+  }
+
+  .orbits {
+    width: 390px;
+    height: 390px;
   }
 
   form {
@@ -587,15 +716,61 @@ footer span {
     width: 100%;
   }
 
-  .ticker {
-    animation-duration: 8s;
+  .ticker-track {
+    animation-duration: 10s;
   }
-}
 
-/* ACCESIBILIDAD */
+  @keyframes circleStartups {
+    from {
+      transform:
+        rotate(0deg)
+        translateX(195px)
+        rotate(0deg)
+        translate(-50%, -50%);
+    }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+    to {
+      transform:
+        rotate(360deg)
+        translateX(195px)
+        rotate(-360deg)
+        translate(-50%, -50%);
+    }
+  }
+
+  @keyframes circleTalento {
+    from {
+      transform:
+        rotate(120deg)
+        translateX(195px)
+        rotate(-120deg)
+        translate(-50%, -50%);
+    }
+
+    to {
+      transform:
+        rotate(480deg)
+        translateX(195px)
+        rotate(-480deg)
+        translate(-50%, -50%);
+    }
+  }
+
+  @keyframes circleCapital {
+    from {
+      transform:
+        rotate(240deg)
+        translateX(195px)
+        rotate(-240deg)
+        translate(-50%, -50%);
+    }
+
+    to {
+      transform:
+        rotate(600deg)
+        translateX(195px)
+        rotate(-600deg)
+        translate(-50%, -50%);
+    }
   }
 }
